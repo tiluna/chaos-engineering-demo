@@ -112,6 +112,40 @@ module frontdoor './resources/frontdoor.bicep' = {
   }
 }
 
+// We only deploy the User Assigned Manage Identity if deployChaos is set to true
+module uami './chaos-experiments/uami.bicep' = if (deployChaos) {
+  name: '${rg.name}-uami'
+  scope: rg
+  params: {
+    nameprefix: toLower(name)
+    location: rg.location
+  }
+}
+
+// We only deploy the Role Assigment for the main RG if deployChaos is set to true
+module roleassigmentrg './chaos-experiments/uami-roleassigment-rg.bicep' = if (deployChaos) {
+  name: '${rg.name}-roleassigmentrg'
+  scope: rg
+  params: {
+    uamiName: uami.outputs.userAssignedIdentityName
+    uamiRg: rg.name
+  }
+}
+
+// We only deploy the Role Assigment for the VMSS RG if deployChaos is set to true
+module roleassigmentrgvmss './chaos-experiments/uami-roleassigment-rg.bicep' = if (deployChaos) {
+  name: '${rg.name}-roleassigmentrgvmss'
+  scope: resourceGroup('${name}-aks-rg')
+  params: {
+    uamiName: uami.outputs.userAssignedIdentityName
+    uamiRg: rg.name
+  }
+  // We want to deploy this after the AKS:
+  dependsOn: [
+    containers
+  ]
+}
+
 // We only deploy the Chaos experiments if deployChaos is set to true
 module chaos './resources/chaos.bicep' = if (deployChaos) {
   name: '${rg.name}-chaos'
@@ -119,6 +153,8 @@ module chaos './resources/chaos.bicep' = if (deployChaos) {
   params: {
     nameprefix: toLower(name)
     location: rg.location
+    aksClusterResourceGroup: containers.outputs.aksClusterResourceGroup
+    uamiName: uami.outputs.userAssignedIdentityName
   }
   // We want to deploy this last:
   dependsOn: [
