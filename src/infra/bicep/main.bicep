@@ -113,7 +113,7 @@ module frontdoor './resources/frontdoor.bicep' = {
 }
 
 // We only deploy the User Assigned Manage Identity if deployChaos is set to true
-module uami './chaos-experiments/uami.bicep' = if (deployChaos) {
+module uami './utils/uami.bicep' = if (deployChaos) {
   name: '${rg.name}-uami'
   scope: rg
   params: {
@@ -123,7 +123,7 @@ module uami './chaos-experiments/uami.bicep' = if (deployChaos) {
 }
 
 // We only deploy the Role Assigment for the main RG if deployChaos is set to true
-module roleassigmentrg './chaos-experiments/uami-roleassigment-rg.bicep' = if (deployChaos) {
+module roleassigmentrg './utils/uami-roleassigment-rg.bicep' = if (deployChaos) {
   name: '${rg.name}-roleassigmentrg'
   scope: rg
   params: {
@@ -133,7 +133,7 @@ module roleassigmentrg './chaos-experiments/uami-roleassigment-rg.bicep' = if (d
 }
 
 // We only deploy the Role Assigment for the VMSS RG if deployChaos is set to true
-module roleassigmentrgvmss './chaos-experiments/uami-roleassigment-rg.bicep' = if (deployChaos) {
+module roleassigmentrgvmss './utils/uami-roleassigment-rg.bicep' = if (deployChaos) {
   name: '${rg.name}-roleassigmentrgvmss'
   scope: resourceGroup('${name}-aks-rg')
   params: {
