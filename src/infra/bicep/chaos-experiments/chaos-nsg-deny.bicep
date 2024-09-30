@@ -19,7 +19,7 @@ resource chaosnsgtarget 'Microsoft.Chaos/targets@2022-10-01-preview' = {
 
   // capability: nsg (deny access)
   resource chaosnsgcapability 'capabilities' = {
-    name: 'SecurityRule-1.1'
+    name: 'SecurityRule-1.0'
   }
 }
 
@@ -52,7 +52,7 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
             name: 'branch1'
             actions: [
               {
-                name: 'urn:csci:microsoft:networkSecurityGroup:securityRule/1.1'
+                name: 'urn:csci:microsoft:networkSecurityGroup:securityRule/1.0'
                 type: 'continuous'
                 selectorId: chaosNsgSelectorId
                 duration: 'PT5M'
@@ -92,10 +92,6 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
                   {
                     key: 'name'
                     value: 'ChaosDenyAllInBound'
-                  }
-                  {
-                    key: 'flushConnection'
-                    value: 'false'
                   }
                 ]
               }
