@@ -63,19 +63,19 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
                   }
                   {
                     key: 'sourceAddresses'
-                    value: '0.0.0.0/0'
+                    value: '[\'0.0.0.0/0\']'
                   }
                   {
                     key: 'sourcePortRanges'
-                    value: '0-65535'
+                    value: '[\'*\']'
                   }
                   {
                     key: 'destinationAddresses'
-                    value: '0.0.0.0/0'
+                    value: '[\'0.0.0.0/0\']'
                   }
                   {
                     key: 'destinationPortRanges'
-                    value: '0-65535'
+                    value: '[\'*\']'
                   }
                   {
                     key: 'protocol'
