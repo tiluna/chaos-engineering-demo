@@ -62,4 +62,13 @@ module chaos4 '../chaos-experiments/chaos-zone-down.bicep' = {
   }
 }
 
+// Fifth experiment: Deny NSG access to Cart
+module chaos5 '../chaos-experiments/chaos-nsg-deny.bicep' = {
+  name: '${nameprefix}-chaos-5'
+  params: {
+    nameprefix: nameprefix
+    location: location
+  }
+}
+
 // References to next experiments to be added here. 
