@@ -24,7 +24,7 @@ resource chaosnsgtarget 'Microsoft.Chaos/targets@2022-10-01-preview' = {
 }
 
 // chaos experiment: nsg
-resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
+resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2024-03-22-preview' = {
   name: experimentName
   location: location
   identity: {
@@ -42,8 +42,7 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
           }
         ]
       }
-    ]
-    startOnCreation: false
+    ]    
     steps: [
       {
         name: 'step1'
@@ -63,19 +62,19 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
                   }
                   {
                     key: 'sourceAddresses'
-                    value: '[\'0.0.0.0/0\']'
+                    value: '["0.0.0.0/0"]'
                   }
                   {
                     key: 'sourcePortRanges'
-                    value: '[\'*\']'
+                    value: '["0-65535"]'
                   }
                   {
                     key: 'destinationAddresses'
-                    value: '[\'0.0.0.0/0\']'
+                    value: '["0.0.0.0/0"]'
                   }
                   {
                     key: 'destinationPortRanges'
-                    value: '[\'*\']'
+                    value: '["0-65535"]'
                   }
                   {
                     key: 'protocol'
@@ -91,11 +90,11 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2022-10-01-preview' = {
                   }
                   {
                     key: 'name'
-                    value: 'ChaosDenyAllInBound'
+                    value: 'DenyAllOutBound'
                   }
                   {
                     key: 'flushConnection'
-                    value: 'false'
+                    value: 'true'
                   }
                 ]
               }
