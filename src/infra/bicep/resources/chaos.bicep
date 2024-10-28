@@ -36,7 +36,7 @@ module chaos3 '../chaos-experiments/chaos-aks-degradation.bicep' = {
 }
 
 // Deployment Script: Get the VMSS Cluster Name
-module deploymentScript '../chaos-experiments/aks-deploymentscript.bicep' = {
+module deploymentScript '../utils/aks-deploymentscript.bicep' = {
   name: '${nameprefix}-deploymentScript'
   params: {
     nameprefix: nameprefix
