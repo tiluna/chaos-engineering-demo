@@ -94,7 +94,7 @@ resource chaosnsgexperiment 'Microsoft.Chaos/experiments@2024-03-22-preview' = {
                   }
                   {
                     key: 'flushConnection'
-                    value: 'true'
+                    value: 'false'
                   }
                 ]
               }
