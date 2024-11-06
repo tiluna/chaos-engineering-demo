@@ -49,7 +49,7 @@ resource acr 'Microsoft.ContainerRegistry/registries@2023-07-01' = {
   name: acrName
   location: location
   sku: {
-    name: 'Basic'
+    name: zoneRedundant? 'Premium' : 'Basic'
   }
   properties: {
     adminUserEnabled: true
@@ -83,6 +83,14 @@ resource aks 'Microsoft.ContainerService/managedClusters@2024-03-02-preview' = {
     nodeResourceGroup: aksClusterResourceGroup
     networkProfile: {
       networkPlugin: 'azure'
+    }
+    oidcIssuerProfile: {
+      enabled: true
+    }
+    securityProfile: {
+      workloadIdentity: {
+        enabled: true
+      }
     }
 
     agentPoolProfiles: [
