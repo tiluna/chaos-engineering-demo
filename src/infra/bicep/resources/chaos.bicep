@@ -71,4 +71,13 @@ module chaos5 '../chaos-experiments/chaos-nsg-deny.bicep' = {
   }
 }
 
+// Sixth experiment: Degradation of an AKS cluster
+module chaos6 '../chaos-experiments/chaos-aks-degradation-legacy.bicep' = {
+  name: '${nameprefix}-chaos-6'
+  params: {
+    nameprefix: nameprefix
+    location: location
+  }
+}
+
 // References to next experiments to be added here. 
