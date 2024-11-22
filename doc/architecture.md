@@ -15,7 +15,7 @@ The website is built as a React Single Page Application (SPA) and is hosted as a
 
 - API Communication: All interactions with backend APIs (Product API and Carts API) happen directly from the client-side browser running the React code.
 - Cart: The Cart works using local storage when not authenticated - this is not persisted.
-- UI Functionality: You can browser product categories, product detail page and add things to the cart. There is no checkout implemented.
+- UI Functionality: You can browse product categories, product detail pages and add products to the cart. There is no checkout implemented.
   
 ## Products API (AKS and SQL Server)
 The Products API handles product-related data and operations.
