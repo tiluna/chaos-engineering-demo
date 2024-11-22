@@ -4,8 +4,8 @@ We welcome contributions to the chaos experiment collection. Please keep in mind
 
 ## Guidelines
 
-1) Keep in mind that Chaos Engineering is not about randomly breaking stuff. It's part of an experimentation cycle, that aims to improve overall solution reliability: For a component, a failure mode is identified. A mitigation is determined for that specific failure mode, after which an experiment is designed to validate that that mitigation has been implemented correctly by introducing that failure into the solution. For each experiment that we adopt into the collection, we want to see that process described (e.g. in the comments of the experiment bicep). 
+- Keep in mind that Chaos Engineering is not about randomly breaking stuff. It's part of an experimentation cycle, that aims to improve overall solution reliability: For a component, a failure mode is identified. A mitigation is determined for that specific failure mode, after which an experiment is designed to validate that that mitigation has been implemented correctly by introducing that failure into the solution. For each experiment that we adopt into the collection, we want to see that process described (e.g. in the comments of the experiment bicep). 
 
-2)
+- Chaos experiments should (where feasible) be contained in a single Bicep file. This makes it easier to add and remove experiments to the repo and easier for people to pick out a specific experiment for use in their own environment.
 
-3)
+- Please use extensive commenting in the definition of a chaos experiment
