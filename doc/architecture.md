@@ -11,12 +11,20 @@ Front Door is used to provide a single endpoint for incoming requests, while ser
 All backend requests go over Internet and are secured using TLS. 
 
 ## Frontend website (SPA)
-The website is written as a React Single Page application. It is served from a static website on a storage account. All calls to APIs are sent directly from the webpage. 
+The website is built as a React Single Page Application (SPA) and is hosted as a static site on an Azure Storage Account.
 
+- API Communication: All interactions with backend APIs (Product API and Carts API) happen directly from the client-side browser running the React code.
+- Cart: The Cart works using local storage when not authenticated - this is not persisted.
+- UI Functionality: You can browser product categories, product detail page and add things to the cart. There is no checkout implemented.
+  
 ## Products API (AKS and SQL Server)
-The product data is served from the Products API on AKS, while procuct data is stored in a SQL database. Product Images are not stored here, those come from the image storage account. 
+The Products API handles product-related data and operations.
 
-TLS certificates on AKS are provided by LetsEncrypt. 
+- Infrastructure: Runs on Azure Kubernetes Service (AKS) and connects to an Azure SQL database for storing product data.
+- Storage: Product images are hosted separately on an Azure Storage Account and are not managed by the Products API.
+- Security: TLS certificates for AKS are provisioned using Let's Encrypt.
+
+For it to be functioning properly the cosmos DBs for stocks and cart need to be functioning as well.
 
 ![](../assets/aks.png "AKS Architecture")
 
@@ -28,9 +36,11 @@ During deployment an empty (Hello World) image is deployed to ACA, because it ca
 Product images and details are stored on static websites on storage accounts and directly included in the website.
 
 ## Entra ID for authentication
-Users can authenticate on the website, although this is not needed to browse items. It currently only serves to retrieve a user identifier for storing carts. If the user is not authenticated, carts data is only stored locally in the browser. 
-
-In order for authentication to work, an Entra Application must be created. The ID of this application must be passed to the deployment in the WEBSITE_CLIENTID variable. Additionally, the URL of the application (shown on the deployment summary page) needs to be added to the application as a redirect URI for authentication:
+Users can authenticate on the website using MSAL, although this is not needed to browse items. It currently only serves to retrieve a user identifier for storing carts. 
+If the user is not authenticated, carts data is only stored locally in the browser. 
+In order for authentication to work, an Entra Application must be created. 
+The ID of this application must be passed to the deployment in the WEBSITE_CLIENTID and ENTRA_AUTHORITY variables. These replace the .env.production variables in the UI folder.
+Additionally, the URL of the application (shown on the deployment summary page) needs to be added to the application as a redirect URI for authentication:
 
 ![Entra ID redirect URIs](../assets/entra-redirect.png)
 
