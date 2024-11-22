@@ -31,7 +31,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 > [!TIP]
-> While we highly appreciate contributions, we recommend discussion the scope and approach for a contribution first by raising an issue on this repo.
+> While we highly appreciate contributions, we recommend discussing the scope and approach for a contribution beforehand by raising an issue on this repo.
 
 ## Trademarks
 
