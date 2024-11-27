@@ -1,4 +1,4 @@
-# Creating an application registration
+# Creating an Entra application for website sign-in
 
 In order to allow users to sign in to your demonstration website, you'll need to create an application in Entra ID. You can do this by running on the following command on az CLI:
 
