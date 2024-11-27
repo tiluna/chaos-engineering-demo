@@ -6,3 +6,6 @@ This project uses GitHub Issues to track bugs and feature requests. Please searc
 
 Support will be provided through Github Issues on a best-effort basis.
 
+## Microsoft Support Policy  
+
+Support for this project is limited to the resources listed above.
