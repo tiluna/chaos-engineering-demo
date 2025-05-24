@@ -484,7 +484,9 @@ jobs:
             --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
             --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
             --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux \
-            --set controller.service.externalTrafficPolicy=Local
+            --set controller.service.externalTrafficPolicy=Local \
+            --set controller.progressDeadlineSeconds=600 \
+            --set controller.minReadySeconds=60
 
         # By default, Azure IP addresses don't have a DNS name. We need it for our TLS cert to be issued.
         # We set it by updating the label of the IP address resource in Azure, but the domain part is not user-settable. 
