@@ -15,7 +15,6 @@ var aksSubnetNSGName = '${nameprefix}nsg-aks'
 var acaSubnetName = 'aca'
 var acaSubnetPrefix = '10.12.2.0/23'
 var acaSubnetNSGName = '${nameprefix}nsg-aca'
-
 resource vnet 'Microsoft.Network/virtualNetworks@2021-08-01' = {
   name: vnetName
   location: location
@@ -42,6 +41,15 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-08-01' = {
           networkSecurityGroup: {
             id: resourceId('Microsoft.Network/networkSecurityGroups', acaSubnetNSGName)
           }
+
+          delegations: [
+            {
+              name: 'acaDelegation'
+              properties: {
+                serviceName: 'Microsoft.App/environments'
+              }
+            }
+          ]
         }
       }
     ]
